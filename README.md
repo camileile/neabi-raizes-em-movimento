@@ -29,6 +29,7 @@ Todo o texto e os links ficam em **`src/data/site-content.ts`**. Os componentes 
 | --- | --- |
 | Títulos e textos das seções | `hero`, `consciencia`, `assistaELeia`, `biblioteca`, `acervos`, `playlist`, `footer` |
 | Varal de personalidades negras | `personalidades` (textos) e `personalities` (cartões) |
+| Retratos pendurados na abertura | `hero.featuredPersonalities` (até 4 nomes de `personalities` com foto) |
 | Filmes (título, tipo, descrição, link) | `films` |
 | Autores e sugestões de leitura | `authors` (a ordem do array é a ordem na página) |
 | Quantos autores aparecem antes de "Ver todos" | `biblioteca.initialAuthors` |
