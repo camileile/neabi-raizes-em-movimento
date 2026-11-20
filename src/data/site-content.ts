@@ -116,6 +116,14 @@ export const hero = {
     "Conheça vozes, obras e experiências que ampliam nosso olhar sobre a história e a cultura negra.",
   primaryCta: "Explorar os conteúdos",
   playlistCta: "Ouvir a playlist",
+  /** Retratos do varal que aparecem na ilustração da abertura (nomes de `personalities`). */
+  featuredPersonalities: [
+    "Carolina Maria de Jesus",
+    "Lia de Itamaracá",
+    "Milton Santos",
+    "Jaqueline Góes de Jesus",
+  ],
+  varalLink: "Conheça o varal de personalidades",
 };
 
 export const consciencia = {
