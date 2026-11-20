@@ -28,6 +28,7 @@ Todo o texto e os links ficam em **`src/data/site-content.ts`**. Os componentes 
 | O que mudar | Onde, em `site-content.ts` |
 | --- | --- |
 | Títulos e textos das seções | `hero`, `consciencia`, `assistaELeia`, `biblioteca`, `acervos`, `playlist`, `footer` |
+| Varal de personalidades negras | `personalidades` (textos) e `personalities` (cartões) |
 | Filmes (título, tipo, descrição, link) | `films` |
 | Autores e sugestões de leitura | `authors` (a ordem do array é a ordem na página) |
 | Quantos autores aparecem antes de "Ver todos" | `biblioteca.initialAuthors` |
@@ -64,6 +65,7 @@ As imagens ficam em `public/` e são declaradas em `site-content.ts` com caminho
 
 - `films[].poster`: pôsteres dos filmes, em `public/filmes/`.
 - `biblioteca.photo`: foto da exposição, em `public/biblioteca/`.
+- `personalities[].photo`: retratos do varal, em `public/personalidades/`. Sem `photo`, o cartão mostra uma composição tipográfica e o texto de `noPhotoNote`.
 
 O Next.js otimiza essas imagens (`next/image`), e o carregamento fica para quando elas se aproximam da tela. Para trocar ou adicionar imagens:
 
@@ -106,6 +108,10 @@ O site não afirma em qual serviço de assinatura cada filme está disponível.
 | `public/filmes/amarelo-e-tudo-pra-ontem.jpg` | Pôster oficial de *AmarElo — É Tudo pra Ontem* | © Netflix. Material de divulgação obtido no TMDB (themoviedb.org/movie/765613) |
 | `public/filmes/estrelas-alem-do-tempo.jpg` | Pôster oficial brasileiro de *Estrelas Além do Tempo* | © 20th Century Studios. Material de divulgação obtido no TMDB (themoviedb.org/movie/381284) |
 
+Os retratos em `public/personalidades/` e os textos do varal vieram do PDF *Varal de Personalidades Negras*, preparado pelo NEABI. As fotos foram extraídas sem retoques de cor ou de pele, apenas recortadas. A origem e a licença de cada retrato ainda precisam ser registradas (veja Pendências).
+
+O cartaz de Tereza de Benguela no PDF usa uma pintura que parece ser *Aïcha* (1922), de Félix Vallotton, um retrato de outra modelo que costuma circular na internet como se fosse Tereza. Não se conhecem retratos de Tereza feitos em sua época. Por isso, o site mostra para ela uma composição tipográfica com essa explicação.
+
 Os pôsteres são usados apenas para identificar as obras em uma página educativa e sem fins comerciais, com crédito visível. Se algum detentor de direitos pedir a remoção, troque `poster` por outra imagem em `site-content.ts`.
 
 Além dessas imagens, o favicon (`src/app/icon.svg`) e a imagem de compartilhamento (`src/app/opengraph-image.tsx`) foram feitos para o projeto com a paleta Raízes em Movimento.
@@ -133,6 +139,8 @@ npx vercel --prod   # produção, só depois de revisar o preview
 - [ ] Arquivo oficial da marca NEABI (SVG ou PNG transparente).
 - [x] Foto da exposição na biblioteca.
 - [ ] Confirmar a autoria da foto da exposição (o crédito atual é "Foto: NEABI · IFPE Campus Garanhuns").
+- [ ] Registrar origem, autoria e licença das 9 fotos do varal de personalidades (Carolina Maria de Jesus, Milton Santos, Antonieta de Barros, Solano Trindade, Abdias Nascimento, Lélia Gonzalez, Lia de Itamaracá, Enedina Alves Marques e Jaqueline Góes de Jesus).
+- [ ] Revisar a imagem de Tereza de Benguela no cartaz impresso do varal (ver "Créditos de imagens").
 - [ ] Confirmação de quais autores e livros estão de fato no acervo da biblioteca.
 - [ ] Conferir as fontes das biografias ainda sem referência no README: Djamila Ribeiro, Chimamanda Ngozi Adichie, Lélia Gonzalez, Milton Santos, Frantz Fanon e Itamar Vieira Junior.
 - [ ] Conferir o título em português "O tempo da infância", de Françoise Ega. Não foi localizada edição brasileira com esse nome.
