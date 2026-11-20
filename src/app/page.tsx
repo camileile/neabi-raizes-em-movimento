@@ -3,6 +3,7 @@ import { ConscienciaSection } from "@/components/ConscienciaSection";
 import { FilmsSection } from "@/components/FilmsSection";
 import { Hero } from "@/components/Hero";
 import { LibrarySection } from "@/components/LibrarySection";
+import { PersonalitiesSection } from "@/components/PersonalitiesSection";
 import { PlaylistSection } from "@/components/PlaylistSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -21,6 +22,7 @@ export default function Home() {
       <main id="conteudo" tabIndex={-1} className="focus:outline-none">
         <Hero />
         <ConscienciaSection />
+        <PersonalitiesSection />
         <FilmsSection />
         <LibrarySection />
         <CollectionsSection />

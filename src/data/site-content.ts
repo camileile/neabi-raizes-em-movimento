@@ -48,10 +48,22 @@ export type DigitalCollection = {
   link: ExternalLinkData;
 };
 
+export type Personality = {
+  name: string;
+  /** Área de atuação · UF, como no cartaz do varal. */
+  area: string;
+  headline: string;
+  text: string;
+  /** Sem foto, o cartão mostra uma composição tipográfica e a nota `noPhotoNote`. */
+  photo?: Omit<ImageData, "credit">;
+  noPhotoNote?: string;
+};
+
 export type NavItem = { id: string; label: string };
 
 export const sectionIds = {
   consciencia: "consciencia-negra",
+  personalidades: "personalidades",
   assistaELeia: "assista-e-leia",
   biblioteca: "biblioteca",
   acervos: "acervos-digitais",
@@ -71,6 +83,7 @@ export const site = {
 
 export const nav: NavItem[] = [
   { id: sectionIds.consciencia, label: "Consciência Negra" },
+  { id: sectionIds.personalidades, label: "Personalidades" },
   { id: sectionIds.assistaELeia, label: "Assista e leia" },
   { id: sectionIds.biblioteca, label: "Biblioteca" },
   { id: sectionIds.acervos, label: "Acervos digitais" },
@@ -110,6 +123,133 @@ export const consciencia = {
   text: "O 20 de Novembro homenageia Zumbi dos Palmares e relembra a resistência negra à escravidão. É também um convite a reconhecer as contribuições da população negra e a enfrentar o racismo nas relações cotidianas, na educação e nas instituições.",
   callout: "A educação antirracista se constrói todos os dias.",
 };
+
+export const personalidades = {
+  eyebrow: "Varal de personalidades negras",
+  title: "Trajetórias que fazem história.",
+  intro:
+    "Conheça pessoas negras que marcaram a literatura, a ciência, a política, a arte e a resistência no Brasil.",
+  scrollHint: "Deslize para ver todas as personalidades.",
+  photoCredit: "Fotos: material do Varal de Personalidades Negras do NEABI.",
+};
+
+export const personalities: Personality[] = [
+  {
+    name: "Carolina Maria de Jesus",
+    area: "Literatura · MG",
+    headline: "A escritora de Quarto de despejo",
+    text: "Em Quarto de despejo, registrou a vida na favela do Canindé, em São Paulo. Seu diário expôs a fome e a desigualdade pela voz de quem vivia essa realidade.",
+    photo: {
+      src: "/personalidades/carolina-maria-de-jesus.jpg",
+      width: 443,
+      height: 692,
+      alt: "Fotografia em preto e branco de Carolina Maria de Jesus, com um lenço claro na cabeça.",
+    },
+  },
+  {
+    name: "Tereza de Benguela",
+    area: "Liderança quilombola · MT",
+    headline: "Resistência no Quariterê",
+    text: "No século XVIII, liderou o Quilombo do Quariterê, também conhecido como Quilombo do Piolho. Sua trajetória destaca o papel das mulheres negras na organização da resistência à escravidão.",
+    noPhotoNote: "Não se conhecem retratos de Tereza de Benguela feitos em sua época.",
+  },
+  {
+    name: "Milton Santos",
+    area: "Geografia · BA",
+    headline: "Como as desigualdades moldam o território",
+    text: "O geógrafo baiano estudou como as desigualdades sociais se expressam nos lugares onde vivemos. Seu trabalho renovou o pensamento geográfico brasileiro e recebeu reconhecimento internacional.",
+    photo: {
+      src: "/personalidades/milton-santos.jpg",
+      width: 551,
+      height: 717,
+      alt: "Fotografia em preto e branco de Milton Santos, de óculos, gesticulando enquanto fala.",
+    },
+  },
+  {
+    name: "Antonieta de Barros",
+    area: "Educação e política · SC",
+    headline: "Primeira deputada estadual negra do Brasil",
+    text: "Professora e jornalista, criou um curso de alfabetização. Em Santa Catarina, tornou-se a primeira deputada estadual negra do país.",
+    photo: {
+      src: "/personalidades/antonieta-de-barros.jpg",
+      width: 750,
+      height: 752,
+      alt: "Retrato antigo em preto e branco de Antonieta de Barros jovem, de blusa clara.",
+    },
+  },
+  {
+    name: "Solano Trindade",
+    area: "Poesia · PE",
+    headline: "Poesia contra a fome",
+    text: "Nascido no Recife, fez da poesia uma forma de denunciar o racismo e a desigualdade. Em Tem gente com fome, deu ritmo à denúncia de um problema que segue presente no país.",
+    photo: {
+      src: "/personalidades/solano-trindade.jpg",
+      width: 287,
+      height: 440,
+      alt: "Fotografia em preto e branco de Solano Trindade, com cabelo e barba grisalhos.",
+    },
+  },
+  {
+    name: "Abdias Nascimento",
+    area: "Teatro e ativismo · SP",
+    headline: "Teatro Experimental do Negro",
+    text: "Artista e ativista, fundou o Teatro Experimental do Negro, que abriu espaço para artistas negros nos palcos brasileiros. Também idealizou o Museu de Arte Negra.",
+    photo: {
+      src: "/personalidades/abdias-nascimento.jpg",
+      width: 457,
+      height: 672,
+      alt: "Fotografia em preto e branco de Abdias Nascimento, de óculos, terno e gravata, falando com as mãos.",
+    },
+  },
+  {
+    name: "Lélia Gonzalez",
+    area: "Feminismo negro · MG",
+    headline: "Amefricanidade",
+    text: "Intelectual e ativista, analisou como o racismo e o sexismo se cruzam na sociedade brasileira. Criou o conceito de amefricanidade para pensar as experiências negras e indígenas nas Américas.",
+    photo: {
+      src: "/personalidades/lelia-gonzalez.jpg",
+      width: 461,
+      height: 692,
+      alt: "Fotografia em preto e branco de Lélia Gonzalez sorrindo, com um colar de contas.",
+    },
+  },
+  {
+    name: "Lia de Itamaracá",
+    area: "Cultura popular · PE",
+    headline: "Rainha da ciranda",
+    text: "Cantora, compositora e cirandeira da Ilha de Itamaracá, Lia levou a ciranda pernambucana a novos públicos.",
+    photo: {
+      src: "/personalidades/lia-de-itamaraca.jpg",
+      width: 754,
+      height: 1125,
+      alt: "Lia de Itamaracá sorrindo, sentada, com turbante e vestido estampados em cores vivas.",
+    },
+  },
+  {
+    name: "Enedina Alves Marques",
+    area: "Engenharia · PR",
+    headline: "Primeira engenheira negra do Brasil",
+    text: "Formou-se em Engenharia Civil em 1945, na atual Universidade Federal do Paraná. Atuou em obras de infraestrutura no estado.",
+    photo: {
+      src: "/personalidades/enedina-alves-marques.jpg",
+      width: 629,
+      height: 1212,
+      alt: "Fotografia antiga em preto e branco de Enedina Alves Marques, de pé, com roupa clara e um rolo de papel na mão.",
+    },
+  },
+  {
+    name: "Jaqueline Góes de Jesus",
+    area: "Biomedicina · BA",
+    headline: "O genoma em 48 horas",
+    text: "A biomédica baiana liderou a equipe que, em 48 horas, sequenciou o genoma do coronavírus identificado no primeiro caso confirmado de COVID-19 no Brasil.",
+    photo: {
+      src: "/personalidades/jaqueline-goes-de-jesus.jpg",
+      width: 768,
+      height: 1082,
+      alt: "Jaqueline Góes de Jesus sorrindo, com tranças longas e blazer magenta.",
+    },
+  },
+];
 
 export const assistaELeia = {
   title: "Histórias para ver, ouvir e conversar.",
