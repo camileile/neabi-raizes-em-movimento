@@ -1,8 +1,24 @@
+import { ConscienciaSection } from "@/components/ConscienciaSection";
+import { Hero } from "@/components/Hero";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { nav, site } from "@/data/site-content";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Raízes em Movimento</h1>
-      <p>NEABI · IFPE Campus Garanhuns</p>
-    </main>
+    <>
+      <a
+        href="#conteudo"
+        className="sr-only z-50 bg-solar px-4 py-3 font-bold text-carvao focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Pular para o conteúdo
+      </a>
+      <SiteHeader nav={nav} org={site.org} campus={site.campus} />
+      <main id="conteudo" tabIndex={-1} className="focus:outline-none">
+        <Hero />
+        <ConscienciaSection />
+      </main>
+      <SiteFooter />
+    </>
   );
 }
