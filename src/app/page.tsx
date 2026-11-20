@@ -3,6 +3,7 @@ import { ConscienciaSection } from "@/components/ConscienciaSection";
 import { FilmsSection } from "@/components/FilmsSection";
 import { Hero } from "@/components/Hero";
 import { LibrarySection } from "@/components/LibrarySection";
+import { PlaylistSection } from "@/components/PlaylistSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { nav, site } from "@/data/site-content";
@@ -23,6 +24,7 @@ export default function Home() {
         <FilmsSection />
         <LibrarySection />
         <CollectionsSection />
+        <PlaylistSection />
       </main>
       <SiteFooter />
     </>
