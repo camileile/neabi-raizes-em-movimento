@@ -17,10 +17,24 @@ export async function PlaylistSection() {
 
   return (
     <section id={sectionIds.playlist} aria-labelledby="titulo-playlist" className="relative overflow-hidden bg-carvao py-16 text-areia sm:py-24">
-      <div className={`${container} grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center`}>
-        <Vinyl title={playlist.title} />
+      <div className={`${container} grid gap-12 md:grid-cols-[1fr_1.05fr] md:items-center md:gap-14`}>
+        {embedUrl && (
+          <div className="relative order-2 md:order-1">
+            <div aria-hidden="true" className="paper-cut-alt absolute -left-3 -top-4 h-[70%] w-[75%] bg-terracota" />
+            <div aria-hidden="true" className="halftone absolute -bottom-5 -right-3 h-24 w-32 text-areia/20" />
+            <iframe
+              title={`Player da playlist ${playlist.title} no Spotify`}
+              src={embedUrl}
+              width="100%"
+              height="420"
+              loading="lazy"
+              allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              className="relative block h-[420px] w-full rounded-xl border-0 bg-floresta"
+            />
+          </div>
+        )}
 
-        <div>
+        <div className={embedUrl ? "order-1 md:order-2" : "md:col-span-2 md:max-w-2xl"}>
           <p className={`${eyebrow} text-solar`}>
             <span aria-hidden="true" className="h-0.5 w-10 bg-solar" />
             Playlist
@@ -59,41 +73,9 @@ export async function PlaylistSection() {
               </p>
             )}
           </div>
-
-          {embedUrl && (
-            <iframe
-              title={`Player da playlist ${playlist.title} no Spotify`}
-              src={embedUrl}
-              width="100%"
-              height="352"
-              loading="lazy"
-              allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              className="mt-8 h-[352px] w-full border-0"
-            />
-          )}
         </div>
       </div>
     </section>
   );
 }
 
-/** Disco de vinil decorativo, em referência à capa da playlist. */
-function Vinyl({ title }: { title: string }) {
-  return (
-    <div aria-hidden="true" className="relative mx-auto w-full max-w-sm">
-      <div className="paper-cut-alt absolute -left-4 top-8 h-3/4 w-3/4 bg-terracota" />
-      <div className="relative aspect-square rounded-full bg-[#111] ring-4 ring-areia/15">
-        {[8, 16, 24, 32].map((inset) => (
-          <div key={inset} className="absolute rounded-full border border-areia/10" style={{ inset: `${inset}%` }} />
-        ))}
-        <div className="absolute inset-[34%] flex flex-col items-center justify-center gap-[22%] rounded-full bg-solar p-2 text-center font-display text-[clamp(0.75rem,3.2vw,1.05rem)] uppercase leading-none text-carvao">
-          {title.split(/\s(?=\S+$)/).map((part) => (
-            <span key={part}>{part}</span>
-          ))}
-        </div>
-        <div className="absolute inset-[48.5%] rounded-full bg-carvao" />
-      </div>
-      <span className="absolute -bottom-3 right-0 h-1 w-2/3 bg-solar" />
-    </div>
-  );
-}
