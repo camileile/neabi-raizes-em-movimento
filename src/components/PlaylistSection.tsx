@@ -1,9 +1,19 @@
+import QRCode from "qrcode";
 import { getSpotifyEmbedUrl, playlist, sectionIds, spotifyPlaylistUrl } from "@/data/site-content";
 import { ArrowIcon, ExternalLink } from "./ExternalLink";
 import { button, container, eyebrow } from "./ui";
 
-export function PlaylistSection() {
+export async function PlaylistSection() {
   const embedUrl = getSpotifyEmbedUrl(spotifyPlaylistUrl);
+  // QR code gerado no build, a partir do link real (sem JavaScript no navegador).
+  const qrSvg = spotifyPlaylistUrl
+    ? await QRCode.toString(spotifyPlaylistUrl, {
+        type: "svg",
+        margin: 2,
+        errorCorrectionLevel: "M",
+        color: { dark: "#1c1b1aff", light: "#f2e6d6ff" },
+      })
+    : null;
 
   return (
     <section id={sectionIds.playlist} aria-labelledby="titulo-playlist" className="relative overflow-hidden bg-carvao py-16 text-areia sm:py-24">
@@ -23,10 +33,25 @@ export function PlaylistSection() {
 
           <div className="mt-8">
             {spotifyPlaylistUrl ? (
-              <ExternalLink href={spotifyPlaylistUrl} className={button.solar}>
-                {playlist.cta}
-                <ArrowIcon />
-              </ExternalLink>
+              <div className="flex flex-wrap items-center gap-6">
+                <ExternalLink href={spotifyPlaylistUrl} className={button.solar}>
+                  {playlist.cta}
+                  <ArrowIcon />
+                </ExternalLink>
+                {qrSvg && (
+                  <figure className="flex items-center gap-4">
+                    <div
+                      role="img"
+                      aria-label={`QR code que abre a playlist ${playlist.title} no Spotify`}
+                      className="size-28 shrink-0 [&_svg]:size-full"
+                      dangerouslySetInnerHTML={{ __html: qrSvg }}
+                    />
+                    <figcaption className="max-w-[10rem] text-sm leading-snug text-areia/85">
+                      Aponte a câmera do celular para abrir a playlist.
+                    </figcaption>
+                  </figure>
+                )}
+              </div>
             ) : (
               <p className="inline-flex items-center gap-3 border border-areia/30 px-4 py-3 text-sm font-semibold text-areia/85">
                 <span aria-hidden="true" className="size-2 rounded-full border border-solar" />
@@ -61,8 +86,10 @@ function Vinyl({ title }: { title: string }) {
         {[8, 16, 24, 32].map((inset) => (
           <div key={inset} className="absolute rounded-full border border-areia/10" style={{ inset: `${inset}%` }} />
         ))}
-        <div className="absolute inset-[34%] flex items-center justify-center rounded-full bg-solar p-2 text-center">
-          <span className="font-display text-[clamp(0.8rem,3.5vw,1.1rem)] uppercase leading-none text-carvao">{title}</span>
+        <div className="absolute inset-[34%] flex flex-col items-center justify-center gap-[22%] rounded-full bg-solar p-2 text-center font-display text-[clamp(0.75rem,3.2vw,1.05rem)] uppercase leading-none text-carvao">
+          {title.split(/\s(?=\S+$)/).map((part) => (
+            <span key={part}>{part}</span>
+          ))}
         </div>
         <div className="absolute inset-[48.5%] rounded-full bg-carvao" />
       </div>

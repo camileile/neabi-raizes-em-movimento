@@ -67,12 +67,12 @@ export const nav: NavItem[] = [
 ];
 
 /**
- * PENDÊNCIA: link real da playlist no Spotify.
- * Cole aqui o endereço completo (ex.: https://open.spotify.com/playlist/XXXX).
- * Enquanto for `null`, o site mostra "Playlist em breve" sem botão ativo.
- * Ao preencher, o botão do topo, o botão da seção e o player passam a usar o link.
+ * Link da playlist Sons do NEABI no Spotify (sem parâmetros de rastreamento).
+ * Usado pelo botão da abertura, pelo botão da seção, pelo player e pelo QR code.
+ * Se voltar a ser `null`, o site mostra "Playlist em breve" sem botão ativo.
  */
-export const spotifyPlaylistUrl: string | null = null;
+export const spotifyPlaylistUrl: string | null =
+  "https://open.spotify.com/playlist/5FwA0EGbwWYGTbf8MHq1fZ";
 
 /**
  * PENDÊNCIA: confirmar o e-mail institucional.
