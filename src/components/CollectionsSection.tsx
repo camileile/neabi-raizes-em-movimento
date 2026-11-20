@@ -8,7 +8,7 @@ export function CollectionsSection() {
       <div aria-hidden="true" className="halftone absolute right-0 top-0 h-40 w-1/3 text-areia/10" />
       <div className={`${container} relative`}>
         <div className="max-w-3xl">
-          <p className={`${eyebrow} text-solar`}>
+          <p className={`${eyebrow} text-areia`}>
             <span aria-hidden="true" className="h-0.5 w-10 bg-solar" />
             Acervos digitais
           </p>
@@ -26,8 +26,8 @@ export function CollectionsSection() {
               </span>
               <div>
                 <h3 className="text-2xl font-bold leading-tight">{item.name}</h3>
-                <p className="mt-2 max-w-2xl leading-relaxed text-areia/90">{item.description}</p>
-                <p className="mt-2 text-sm font-semibold text-areia/80">{item.link.source}</p>
+                <p className="mt-2 max-w-2xl leading-relaxed">{item.description}</p>
+                <p className="mt-2 text-sm font-semibold">{item.link.source}</p>
               </div>
               <ExternalLink href={item.link.href} className={`${button.solar} self-start md:self-center`}>
                 {item.link.label}

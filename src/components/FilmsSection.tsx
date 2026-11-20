@@ -68,7 +68,7 @@ function FilmPoster({ film }: { film: Film }) {
       {isGreen ? (
         <>
           {/* Faixas sonoras: referência à música */}
-          <div className="absolute inset-y-0 right-6 flex items-center gap-1.5 opacity-90">
+          <div className="absolute right-6 top-6 flex h-[42%] items-end gap-1.5 opacity-90">
             {[40, 72, 55, 88, 46, 64, 30].map((h, i) => (
               <span key={i} className="w-2 bg-solar" style={{ height: `${h}%` }} />
             ))}
