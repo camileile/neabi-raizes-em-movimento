@@ -34,7 +34,7 @@ export function SiteHeader({ nav, org, campus }: Props) {
           <Wordmark org={org} campus={campus} />
         </a>
 
-        <nav aria-label="Seções da página" className="hidden lg:block">
+        <nav aria-label="Seções da página" className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {nav.map((item) => (
               <li key={item.id}>
@@ -52,7 +52,7 @@ export function SiteHeader({ nav, org, campus }: Props) {
         <button
           ref={buttonRef}
           type="button"
-          className="inline-flex min-h-11 items-center gap-2 border-2 border-areia/70 px-3 text-sm font-bold uppercase tracking-wide lg:hidden"
+          className="inline-flex min-h-11 items-center gap-2 border-2 border-areia/70 px-3 text-sm font-bold uppercase tracking-wide xl:hidden"
           aria-expanded={open}
           aria-controls="menu-mobile"
           onClick={() => setOpen((value) => !value)}
@@ -70,7 +70,7 @@ export function SiteHeader({ nav, org, campus }: Props) {
         id="menu-mobile"
         aria-label="Seções da página"
         hidden={!open}
-        className="border-t border-areia/20 bg-carvao lg:hidden"
+        className="border-t border-areia/20 bg-carvao xl:hidden"
       >
         <ul className={`${container} grid grid-cols-1 py-2 sm:grid-cols-2`}>
           {nav.map((item) => (
