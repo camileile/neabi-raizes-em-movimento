@@ -99,12 +99,12 @@ export const spotifyPlaylistUrl: string | null =
   "https://open.spotify.com/playlist/5FwA0EGbwWYGTbf8MHq1fZ";
 
 /**
- * PENDÊNCIA: confirmar o e-mail institucional.
- * Enquanto `confirmed` for `false`, o e-mail não aparece publicamente.
+ * E-mail oficial do NEABI, exibido no rodapé.
+ * Com `confirmed: false`, o e-mail deixa de aparecer no site.
  */
 export const contact = {
   email: "neabi@garanhuns.ifpe.edu.br",
-  confirmed: false,
+  confirmed: true,
 };
 
 export const hero = {
