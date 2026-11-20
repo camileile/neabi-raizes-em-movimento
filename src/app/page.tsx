@@ -1,4 +1,6 @@
+import { CollectionsSection } from "@/components/CollectionsSection";
 import { ConscienciaSection } from "@/components/ConscienciaSection";
+import { FilmsSection } from "@/components/FilmsSection";
 import { Hero } from "@/components/Hero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -17,6 +19,8 @@ export default function Home() {
       <main id="conteudo" tabIndex={-1} className="focus:outline-none">
         <Hero />
         <ConscienciaSection />
+        <FilmsSection />
+        <CollectionsSection />
       </main>
       <SiteFooter />
     </>
