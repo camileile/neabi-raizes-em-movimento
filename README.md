@@ -60,7 +60,12 @@ Com `contact.confirmed: false`, o e-mail não aparece no site. Mude para `true` 
 
 ### Imagens
 
-O site atual não usa fotografias, capas nem retratos. Filmes, livros e playlist aparecem como composições tipográficas e gráficas feitas em CSS. Para adicionar imagens:
+As imagens ficam em `public/` e são declaradas em `site-content.ts` com caminho, dimensões, texto alternativo e crédito:
+
+- `films[].poster`: pôsteres dos filmes, em `public/filmes/`.
+- `biblioteca.photo`: foto da exposição, em `public/biblioteca/`.
+
+O Next.js otimiza essas imagens (`next/image`), e o carregamento fica para quando elas se aproximam da tela. Para trocar ou adicionar imagens:
 
 1. Coloque os arquivos em `public/` (ex.: `public/autores/carolina-maria-de-jesus.jpg`).
 2. Use `next/image` com `width` e `height` definidos e `loading="lazy"` fora da abertura.
@@ -95,7 +100,15 @@ O site não afirma em qual serviço de assinatura cada filme está disponível.
 
 ## Créditos de imagens
 
-Nenhuma imagem de terceiros é usada. O favicon (`src/app/icon.svg`) e a imagem de compartilhamento (`src/app/opengraph-image.tsx`) foram feitos para o projeto com a paleta Raízes em Movimento.
+| Arquivo | Conteúdo | Autoria e origem |
+| --- | --- | --- |
+| `public/biblioteca/exposicao-neabi.jpg` | Exposição de autores negros nas estantes da biblioteca | Foto do NEABI · IFPE Campus Garanhuns, fornecida pela equipe |
+| `public/filmes/amarelo-e-tudo-pra-ontem.jpg` | Pôster oficial de *AmarElo — É Tudo pra Ontem* | © Netflix. Material de divulgação obtido no TMDB (themoviedb.org/movie/765613) |
+| `public/filmes/estrelas-alem-do-tempo.jpg` | Pôster oficial brasileiro de *Estrelas Além do Tempo* | © 20th Century Studios. Material de divulgação obtido no TMDB (themoviedb.org/movie/381284) |
+
+Os pôsteres são usados apenas para identificar as obras em uma página educativa e sem fins comerciais, com crédito visível. Se algum detentor de direitos pedir a remoção, troque `poster` por outra imagem em `site-content.ts`.
+
+Além dessas imagens, o favicon (`src/app/icon.svg`) e a imagem de compartilhamento (`src/app/opengraph-image.tsx`) foram feitos para o projeto com a paleta Raízes em Movimento.
 
 ## Publicar na Vercel
 
@@ -118,8 +131,8 @@ npx vercel --prod   # produção, só depois de revisar o preview
 - [x] Link real da playlist Sons do NEABI no Spotify, com QR code.
 - [ ] Confirmação do e-mail `neabi@garanhuns.ifpe.edu.br` como contato institucional.
 - [ ] Arquivo oficial da marca NEABI (SVG ou PNG transparente).
-- [ ] Capa da playlist, se for desejado exibi-la no lugar do disco ilustrado.
-- [ ] Fotografias e materiais da exposição, com créditos e licença.
+- [x] Foto da exposição na biblioteca.
+- [ ] Confirmar a autoria da foto da exposição (o crédito atual é "Foto: NEABI · IFPE Campus Garanhuns").
 - [ ] Confirmação de quais autores e livros estão de fato no acervo da biblioteca.
 - [ ] Conferir as fontes das biografias ainda sem referência no README: Djamila Ribeiro, Chimamanda Ngozi Adichie, Lélia Gonzalez, Milton Santos, Frantz Fanon e Itamar Vieira Junior.
 - [ ] Conferir o título em português "O tempo da infância", de Françoise Ega. Não foi localizada edição brasileira com esse nome.
