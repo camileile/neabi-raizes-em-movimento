@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+@theme {
+  --color-carvao: #1c1b1a;
+  --color-areia: #f2e6d6;
+  --color-areia-escura: #e6d5bf;
+  --color-terracota: #a33e2b;
+  --color-solar: #f2b705;
+  --color-floresta: #1f6b4c;
+
+  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+}
+
+html {
+  /* Compensa o cabeçalho fixo ao navegar pelas âncoras. */
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: var(--color-areia);
+  color: var(--color-carvao);
+  font-family: var(--font-sans);
+  overflow-wrap: break-word;
+}
+
+/* Foco visível em fundos claros (anel carvão) e escuros (anel solar). */
+:focus-visible {
+  outline: 3px solid var(--color-solar);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--color-carvao);
+}
+
+/* Retícula discreta: usada só em elementos decorativos (aria-hidden). */
+.halftone {
+  background-image: radial-gradient(currentColor 1.1px, transparent 1.4px);
+  background-size: 9px 9px;
+}
+
+/* Bordas de papel recortado, para blocos decorativos. */
+.paper-cut {
+  clip-path: polygon(0 4%, 6% 0, 38% 3%, 71% 0, 100% 5%, 98% 42%, 100% 78%, 96% 100%, 58% 97%, 22% 100%, 0 95%, 2% 51%);
+}
+
+.paper-cut-alt {
+  clip-path: polygon(3% 0, 45% 4%, 100% 0, 97% 36%, 100% 100%, 64% 96%, 31% 100%, 0 97%, 4% 60%, 0 22%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
