@@ -39,15 +39,20 @@ Links externos devem usar `https://`. Eles abrem em nova aba com `rel="noopener 
 
 ### Playlist
 
-Cole o endereço completo em `spotifyPlaylistUrl`, por exemplo `https://open.spotify.com/playlist/XXXX`. Isso ativa automaticamente:
+O link fica em `spotifyPlaylistUrl`, sem o parâmetro `?si=`, que serve só para rastreamento: `https://open.spotify.com/playlist/5FwA0EGbwWYGTbf8MHq1fZ`. A partir dele o site monta:
 
 - o botão "Ouvir a playlist" na abertura;
 - o botão "Ouvir no Spotify" na seção da playlist;
-- o player incorporado, carregado sob demanda. O link comum continua funcionando se o player falhar.
+- o player incorporado, carregado sob demanda. O link comum continua funcionando se o player falhar;
+- o QR code da seção, gerado no build com a biblioteca `qrcode`. Nenhum script roda no navegador para isso.
 
-Enquanto o valor for `null`, a página mostra "Playlist em breve" sem nenhum botão ativo.
+Se o valor voltar a ser `null`, a página mostra "Playlist em breve" sem nenhum botão ativo.
 
-O QR code da playlist ainda não foi gerado, porque depende do link real.
+Os arquivos para impressão em cartazes estão em `docs/qrcode/` (`playlist-sons-do-neabi.svg` e `.png`, 1200 px). Eles foram conferidos por decodificação: apontam para o link acima. Se a playlist mudar, gere-os novamente:
+
+```bash
+node -e "const Q=require('qrcode');const u=require('fs').readFileSync('src/data/site-content.ts','utf8').match(/https:\/\/open\.spotify\.com\/playlist\/\w+/)[0];const o={margin:4,color:{dark:'#1c1b1aff',light:'#ffffffff'}};Q.toFile('docs/qrcode/playlist-sons-do-neabi.svg',u,{...o,type:'svg'});Q.toFile('docs/qrcode/playlist-sons-do-neabi.png',u,{...o,width:1200})"
+```
 
 ### Contato
 
@@ -80,6 +85,7 @@ Biografias. Os textos foram preparados pelo NEABI. Fontes de conferência:
 
 Links de filmes e acervos (conferidos em 20/11/2026):
 
+- Sons do NEABI: playlist no Spotify. <https://open.spotify.com/playlist/5FwA0EGbwWYGTbf8MHq1fZ>
 - AmarElo — É Tudo pra Ontem: página oficial na Netflix. <https://www.netflix.com/br/title/81306298>
 - Estrelas Além do Tempo: trailer oficial no canal da 20th Century Studios. <https://www.youtube.com/watch?v=5wfrDhgUMGI>
 - Museu Afro Brasil Emanoel Araujo: <https://museuafrobrasil.org.br/>
@@ -109,7 +115,7 @@ npx vercel --prod   # produção, só depois de revisar o preview
 
 ## Pendências
 
-- [ ] Link real da playlist Sons do NEABI no Spotify, seguido do QR code.
+- [x] Link real da playlist Sons do NEABI no Spotify, com QR code.
 - [ ] Confirmação do e-mail `neabi@garanhuns.ifpe.edu.br` como contato institucional.
 - [ ] Arquivo oficial da marca NEABI (SVG ou PNG transparente).
 - [ ] Capa da playlist, se for desejado exibi-la no lugar do disco ilustrado.
