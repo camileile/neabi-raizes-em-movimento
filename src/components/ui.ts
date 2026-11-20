@@ -1,7 +1,7 @@
 /** Classes compartilhadas de botões e marcadores. */
 
 const buttonBase =
-  "inline-flex min-h-12 items-center justify-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-wide transition-colors";
+  "inline-flex min-h-12 items-center justify-center gap-2 px-6 py-3 text-center text-sm font-bold uppercase tracking-wide transition-colors";
 
 export const button = {
   solar: `${buttonBase} bg-solar text-carvao hover:bg-areia`,
