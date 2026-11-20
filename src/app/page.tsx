@@ -2,6 +2,7 @@ import { CollectionsSection } from "@/components/CollectionsSection";
 import { ConscienciaSection } from "@/components/ConscienciaSection";
 import { FilmsSection } from "@/components/FilmsSection";
 import { Hero } from "@/components/Hero";
+import { LibrarySection } from "@/components/LibrarySection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { nav, site } from "@/data/site-content";
@@ -20,6 +21,7 @@ export default function Home() {
         <Hero />
         <ConscienciaSection />
         <FilmsSection />
+        <LibrarySection />
         <CollectionsSection />
       </main>
       <SiteFooter />
