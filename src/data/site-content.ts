@@ -15,12 +15,23 @@ export type ExternalLinkData = {
   source: string;
 };
 
+export type ImageData = {
+  /** Caminho a partir de /public */
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  /** Autoria e origem, exibidos junto da imagem. */
+  credit: string;
+};
+
 export type Film = {
   title: string;
   kind: string;
   description: string;
   link: ExternalLinkData;
   accent: Accent;
+  poster: ImageData;
 };
 
 export type Author = {
@@ -118,6 +129,13 @@ export const films: Film[] = [
       source: "Página oficial · Netflix",
     },
     accent: "floresta",
+    poster: {
+      src: "/filmes/amarelo-e-tudo-pra-ontem.jpg",
+      width: 780,
+      height: 1170,
+      alt: "Pôster do documentário: Emicida de perfil diante de um grande coração amarelo, com o título AmarElo — É Tudo pra Ontem.",
+      credit: "Pôster: Netflix, via TMDB",
+    },
   },
   {
     title: "Estrelas Além do Tempo",
@@ -129,7 +147,14 @@ export const films: Film[] = [
       href: "https://www.youtube.com/watch?v=5wfrDhgUMGI",
       source: "Trailer oficial · 20th Century Studios",
     },
-    accent: "carvao",
+    accent: "terracota",
+    poster: {
+      src: "/filmes/estrelas-alem-do-tempo.jpg",
+      width: 780,
+      height: 1170,
+      alt: "Pôster do filme: Janelle Monáe, Taraji P. Henson e Octavia Spencer lado a lado, acima de cenas do filme e do título Estrelas Além do Tempo.",
+      credit: "Pôster: 20th Century Studios, via TMDB",
+    },
   },
 ];
 
@@ -143,6 +168,14 @@ export const biblioteca = {
     "As sugestões ajudam a conhecer cada trajetória. Consulte a biblioteca sobre os títulos disponíveis no acervo.",
   /** Quantos autores aparecem antes de "Ver todos os autores". */
   initialAuthors: 6,
+  photo: {
+    src: "/biblioteca/exposicao-neabi.jpg",
+    width: 960,
+    height: 1280,
+    alt: "Estantes verdes da biblioteca com livros de autores negros expostos e cartazes biográficos de Machado de Assis, Lima Barreto, Conceição Evaristo, Carolina Maria de Jesus, Frantz Fanon, Lélia Gonzalez, Milton Santos e outros nomes da seleção.",
+    credit: "Foto: NEABI · IFPE Campus Garanhuns",
+  } satisfies ImageData,
+  photoCaption: "A exposição montada nas estantes da biblioteca.",
 };
 
 export const authors: Author[] = [
