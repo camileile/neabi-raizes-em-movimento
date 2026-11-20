@@ -1,10 +1,119 @@
 # Raízes em Movimento · NEABI IFPE Campus Garanhuns
 
-Site de página única do NEABI do IFPE Campus Garanhuns para divulgação de conteúdos sobre Consciência Negra.
+Página única do NEABI do IFPE Campus Garanhuns para divulgar conteúdos sobre Consciência Negra: o 20 de Novembro, filmes, a exposição da biblioteca, autores em destaque, acervos digitais e a playlist Sons do NEABI. O acesso principal é pelo celular, por links nos grupos das turmas e QR codes no campus.
 
-Next.js (App Router) + TypeScript + Tailwind CSS.
+Stack: Next.js 16 (App Router, página estática) + TypeScript + Tailwind CSS 4. Não há banco de dados, login, formulários, analytics nem API própria.
+
+## Rodar localmente
+
+Requer Node.js 20 ou superior.
 
 ```bash
 npm install
-npm run dev
+npm run dev          # http://localhost:3000
 ```
+
+## Validação
+
+```bash
+npm run lint         # ESLint
+npm run typecheck    # TypeScript
+npm run build        # build de produção
+```
+
+## Onde editar o conteúdo
+
+Todo o texto e os links ficam em **`src/data/site-content.ts`**. Os componentes em `src/components/` só leem esses dados.
+
+| O que mudar | Onde, em `site-content.ts` |
+| --- | --- |
+| Títulos e textos das seções | `hero`, `consciencia`, `assistaELeia`, `biblioteca`, `acervos`, `playlist`, `footer` |
+| Filmes (título, tipo, descrição, link) | `films` |
+| Autores e sugestões de leitura | `authors` (a ordem do array é a ordem na página) |
+| Quantos autores aparecem antes de "Ver todos" | `biblioteca.initialAuthors` |
+| Museus e acervos | `digitalCollections` |
+| **Playlist do Spotify** | `spotifyPlaylistUrl` |
+| **E-mail de contato** | `contact.email` e `contact.confirmed` |
+
+Links externos devem usar `https://`. Eles abrem em nova aba com `rel="noopener noreferrer"`.
+
+### Playlist
+
+Cole o endereço completo em `spotifyPlaylistUrl`, por exemplo `https://open.spotify.com/playlist/XXXX`. Isso ativa automaticamente:
+
+- o botão "Ouvir a playlist" na abertura;
+- o botão "Ouvir no Spotify" na seção da playlist;
+- o player incorporado, carregado sob demanda. O link comum continua funcionando se o player falhar.
+
+Enquanto o valor for `null`, a página mostra "Playlist em breve" sem nenhum botão ativo.
+
+O QR code da playlist ainda não foi gerado, porque depende do link real.
+
+### Contato
+
+Com `contact.confirmed: false`, o e-mail não aparece no site. Mude para `true` depois de confirmar o endereço.
+
+### Imagens
+
+O site atual não usa fotografias, capas nem retratos. Filmes, livros e playlist aparecem como composições tipográficas e gráficas feitas em CSS. Para adicionar imagens:
+
+1. Coloque os arquivos em `public/` (ex.: `public/autores/carolina-maria-de-jesus.jpg`).
+2. Use `next/image` com `width` e `height` definidos e `loading="lazy"` fora da abertura.
+3. Registre autoria, licença e origem de cada imagem na seção "Créditos de imagens" abaixo.
+
+A assinatura "NEABI" do cabeçalho é **provisória** (`src/components/Wordmark.tsx`). Ela deve ser trocada pelo arquivo oficial da marca.
+
+## Fontes consultadas
+
+Fatos históricos sobre o 20 de Novembro:
+
+- Lei nº 12.519/2011: institui o Dia Nacional de Zumbi e da Consciência Negra em 20 de novembro, data do falecimento de Zumbi dos Palmares. <https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12519.htm>
+- Lei nº 14.759/2023: declara feriado nacional o 20 de novembro. <https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14759.htm>
+
+Biografias. Os textos foram preparados pelo NEABI. Fontes de conferência:
+
+- Machado de Assis: Academia Brasileira de Letras. <https://www.academia.org.br/academicos/machado-de-assis>
+- Carolina Maria de Jesus: Enciclopédia Itaú Cultural. <https://enciclopedia.itaucultural.org.br/pessoas/14374-carolina-maria-de-jesus>
+- Conceição Evaristo: Enciclopédia Itaú Cultural. <https://enciclopedia.itaucultural.org.br/pessoas/1667-conceicao-evaristo>
+- Lima Barreto: Enciclopédia Itaú Cultural. <https://enciclopedia.itaucultural.org.br/pessoas/1555-lima-barreto>
+- Françoise Ega: Revista Interinstitucional Artes de Educar (UERJ), *Cartas a uma negra: um encontro epistolar entre Françoise Ega e Carolina de Jesus*. <https://www.e-publicacoes.uerj.br/riae/article/view/65334>
+
+Links de filmes e acervos (conferidos em 20/11/2026):
+
+- AmarElo — É Tudo pra Ontem: página oficial na Netflix. <https://www.netflix.com/br/title/81306298>
+- Estrelas Além do Tempo: trailer oficial no canal da 20th Century Studios. <https://www.youtube.com/watch?v=5wfrDhgUMGI>
+- Museu Afro Brasil Emanoel Araujo: <https://museuafrobrasil.org.br/>
+- Vidas Negras · Museu da Pessoa: <https://museudapessoa.org/colecao/vidas-negras/>
+
+O site não afirma em qual serviço de assinatura cada filme está disponível.
+
+## Créditos de imagens
+
+Nenhuma imagem de terceiros é usada. O favicon (`src/app/icon.svg`) e a imagem de compartilhamento (`src/app/opengraph-image.tsx`) foram feitos para o projeto com a paleta Raízes em Movimento.
+
+## Publicar na Vercel
+
+Pelo painel (recomendado):
+
+1. Em <https://vercel.com/new>, importe o repositório `neabi-raizes-em-movimento` do GitHub.
+2. A Vercel detecta Next.js automaticamente. Mantenha os padrões: build `npm run build`, sem variáveis de ambiente.
+3. Cada pull request ganha uma URL de preview. O merge na `main` publica em produção.
+
+Pela linha de comando:
+
+```bash
+npx vercel login
+npx vercel          # preview
+npx vercel --prod   # produção, só depois de revisar o preview
+```
+
+## Pendências
+
+- [ ] Link real da playlist Sons do NEABI no Spotify, seguido do QR code.
+- [ ] Confirmação do e-mail `neabi@garanhuns.ifpe.edu.br` como contato institucional.
+- [ ] Arquivo oficial da marca NEABI (SVG ou PNG transparente).
+- [ ] Capa da playlist, se for desejado exibi-la no lugar do disco ilustrado.
+- [ ] Fotografias e materiais da exposição, com créditos e licença.
+- [ ] Confirmação de quais autores e livros estão de fato no acervo da biblioteca.
+- [ ] Conferir as fontes das biografias ainda sem referência no README: Djamila Ribeiro, Chimamanda Ngozi Adichie, Lélia Gonzalez, Milton Santos, Frantz Fanon e Itamar Vieira Junior.
+- [ ] Conferir o título em português "O tempo da infância", de Françoise Ega. Não foi localizada edição brasileira com esse nome.
